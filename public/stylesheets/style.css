@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css?family=Neucha|Cabin+Sketch");
+
+body {
+  font-family: "Neucha", Arial, sans-serif;
+  color: #212529;
+  background-color: #ffffff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Neucha', cursive;
+}
+
+.navbar {
+  background-color: #78C2AD;
+  border-color: #78C2AD;
+}
+
+.navbar-brand {
+  font-family: 'Neucha', cursive;
+}
+
+.banner {
+  margin-top: 4em;
+  border-bottom: 1px solid #aaa;
+  margin-bottom: 1.5em;
+  padding-bottom: 0.5em;
+}
+
+h1 small {
+  color: #aaa;
+}
+
+.card {
+  background-color: #fce9e9;
+}
+
+.card-primary {
+  border-color: #fce9e9;
+  margin-bottom: 1rem;
+}
+
+.review-header {
+  background-color: #fce9e9;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.review {
+  margin-right: -20px;
+  margin-left: -20px;
+  margin-bottom: 1em;
+}
+
+.reviewAuthor {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.badge-default, .btn-primary {
+  background-color: #78C2AD;
+  border-color: #78C2AD;
+}
+
+h4 a, h4 a:hover {
+  color: #212529;
+}
+
+h4 small {
+  font-size: 60%;
+  line-height: 200%;
+  color: #aaa;
+}
+
+.address {
+  margin-bottom: 0.5rem;
+}
+
+.facilities span.badge {
+  margin-right:2px;
+}
+
+legend {
+  font-family: 'Neucha', cursive;
+}
