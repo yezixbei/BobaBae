@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const host = process.env.DB_HOST || '127.0.0.1'
 const readLine = require('readline');
-const dbURL = `mongodb://${host}/BobaBae`;
+//const host = process.env.DB_HOST || '127.0.0.1'
+const dbURL = 'mongodb://localhost/BobaBae';
 if (process.env.NODE_ENV === 'production') {
   dbURI = process.env.MONGODB_URI;
 }

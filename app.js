@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-//const favicon = require('serve-favicon');
+const favicon = require('serve-favicon');
 require('./app_server/models/db');
 
 const indexRouter = require('./app_server/routes/index');
