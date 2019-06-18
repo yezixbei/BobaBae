@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 let dbURI = 'mongodb://localhost/BobaBae';
 if (process.env.NODE_ENV === 'production') {
-  dbURI = 'mongodb://heroku_9chskp10:be6r53v9s6ajug8iold27eklg6@ds139427.mlab.com:39427/heroku_9chskp10';
+  dbURI = process.env.MONGODB_URI;
 }
 const readLine = require('readline');
 
