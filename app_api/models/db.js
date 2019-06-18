@@ -1,12 +1,10 @@
 const mongoose = require('mongoose');
-let dbURI = 'mongodb://localhost/BobaBae';
-if (process.env.NODE_ENV === 'production') {
-  dbURI = process.env.MONGODB_URI;
-}
+const host = process.env.DB_HOST || '127.0.0.1/BobaBae'
+const dbURL = `mongodb://${host}`;
 const readLine = require('readline');
 
 const connect = () => {
-  setTimeout(() => mongoose.connect(dbURI, { useNewUrlParser: true, useCreateIndex: true }), 1000);
+  setTimeout(() => mongoose.connect(dbURL, { useNewUrlParser: true, useCreateIndex: true }), 1000);
 }
 
 
