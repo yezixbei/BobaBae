@@ -1,14 +1,12 @@
 const mongoose = require('mongoose');
+const host = process.env.DB_HOST || '127.0.0.1'
+const dbURL = `mongodb://${host}/BobaBae`;
 const readLine = require('readline');
-//const host = process.env.DB_HOST || '127.0.0.1'
-const dbURL = 'mongodb://localhost/BobaBae';
-if (process.env.NODE_ENV === 'production') {
-  dbURI = process.env.MONGODB_URI;
-}
 
 const connect = () => {
   setTimeout(() => mongoose.connect(dbURL, { useNewUrlParser: true, useCreateIndex: true }), 1000);
 }
+
 
 mongoose.connection.on('connected', () => {
   console.log('connected');
@@ -23,15 +21,6 @@ mongoose.connection.on('disconnected', () => {
   console.log('disconnected');
 });
 
-if (process.platform === 'win32') {
-  const rl = readLine.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
-  rl.on ('SIGINT', () => {
-    process.emit("SIGINT");
-  });
-}
 
 const gracefulShutdown = (msg, callback) => {
   mongoose.connection.close( () => {

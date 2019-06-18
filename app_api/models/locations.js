@@ -14,14 +14,20 @@ const openingTimesSchema = new mongoose.Schema({
 });
 
 const reviewSchema = new mongoose.Schema({
-  author: String,
+  author: {
+    type: String,
+    required: true
+  },
   rating: {
     type: Number,
     required: true,
     min: 0,
     max: 5
   },
-  reviewText: String,
+  reviewText: {
+    type: String,
+    required: true
+  },
   createdOn: {
     type: Date,
     'default': Date.now
@@ -37,18 +43,17 @@ const locationSchema = new mongoose.Schema({
   rating: {
     type: Number,
     'default': 0,
-    min: 1,
+    min: 0,
     max: 5
   },
-  bobaQuality: [String],
+  bobaQualities: [String],
   coords: {
-    type: { type: String},
-    index: [Number]
+    type: {type: String},
+    coordinates: [Number]
   },
   openingTimes: [openingTimesSchema],
   reviews: [reviewSchema]
 });
-
 locationSchema.index({coords: '2dsphere'});
 
 mongoose.model('Location', locationSchema);
