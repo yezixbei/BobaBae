@@ -1,13 +1,11 @@
-@import url("https://fonts.googleapis.com/css?family=Neucha|Cabin+Sketch");
-
-body {
-  font-family: "Neucha", Arial, sans-serif;
-  color: #212529;
-  background-color: #ffffff;
-}
+@import url("//fonts.googleapis.com/css?family=Lobster|Cabin:400,700");
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Neucha', cursive;
+  font-family: 'Lobster', cursive;
+}
+
+legend {
+  font-family: 'Lobster', cursive;
 }
 
 .navbar {
@@ -15,46 +13,52 @@ h1, h2, h3, h4, h5, h6 {
   border-color: #78C2AD;
 }
 
-.navbar-brand {
-  font-family: 'Neucha', cursive;
+.navbar-light .navbar-brand {
+  font-family: 'Lobster', cursive;
+  color: #fff;
+}
+
+.navbar-light .navbar-toggler {
+  color: white;
+  border-color: white;
+}
+
+.navbar-light .navbar-toggler-icon {
+  background-image: url("data:image/svgxml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E")
+}
+
+.navbar-light .navbar-nav .nav-link, .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+  color: white;
+}
+
+.card {
+  background-color: #fff;
+  padding: 1rem;
+}
+
+.card-primary {
+  border-color: #fff;
+  margin-bottom: 0.5rem;
 }
 
 .banner {
   margin-top: 4em;
-  border-bottom: 1px solid #aaa;
+  border-bottom: 1px solid #fff;
   margin-bottom: 1.5em;
   padding-bottom: 0.5em;
 }
 
-h1 small {
-  color: #aaa;
-}
-
-.card {
-  background-color: #fce9e9;
-}
-
-.card-primary {
-  border-color: #fce9e9;
-  margin-bottom: 1rem;
-}
-
 .review-header {
-  background-color: #fce9e9;
+  background-color: #ffe2eb;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
   margin-bottom: 0.5em;
 }
 
 .review {
-  margin-right: -20px;
-  margin-left: -20px;
-  margin-bottom: 1em;
-}
-
-.reviewAuthor {
-  margin-left: 1rem;
-  margin-right: 1rem;
+  margin-right: -16px;
+  margin-left: -16px;
+  margin-bottom: 0.5em;
 }
 
 .badge-default, .btn-primary {
@@ -63,7 +67,7 @@ h1 small {
 }
 
 h4 a, h4 a:hover {
-  color: #212529;
+  color: #5a5a5a;
 }
 
 h4 small {
@@ -72,14 +76,32 @@ h4 small {
   color: #aaa;
 }
 
+h1 small {
+  color: #aaa;
+}
+
 .address {
   margin-bottom: 0.5rem;
 }
 
 .facilities span.badge {
-  margin-right:2px;
+  margin-right: 2px;
 }
 
-legend {
-  font-family: 'Neucha', cursive;
+p {
+  margin-bottom: 0.65rem;
+}
+
+a {
+  color: #fff
+}
+
+a:hover {
+  color:#fff
+}
+
+body {
+  font-family: "Cabin", Arial, sans-serif;
+  color: #5a5a5a;
+  background-color: #ffe2eb;
 }
