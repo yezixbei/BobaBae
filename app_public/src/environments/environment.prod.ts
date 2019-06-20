@@ -1,4 +1,4 @@
 export const environment = {
-  apiBaseUrl: 'https://sheltered-bayou-71575.herokuapp.com/api',
+  apiBaseUrl: 'https://stark-wave-98359.herokuapp.com/',
   production: true
 };
