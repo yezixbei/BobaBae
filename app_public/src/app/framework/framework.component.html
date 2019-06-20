@@ -1,0 +1,21 @@
+<nav class="navbar fixed-top navbar-expand-md navbar-light"> 
+  <div class=”container”>
+    <a routerLink="" class="navbar-brand">Boba Bae</a>
+    <!-- replace href with routerLink to stop browser from reloading the page; use the same link in the router module-->
+      <button type="button" data-toggle="collapse" data-target="#navbarMain" class="navbar-toggler">
+       <span class="navbar-toggler-icon"></span>
+      </button>
+  </div>
+</nav> <!-- navbar -->
+
+<div class="container content"> 
+  <router-outlet></router-outlet> <!-- angular injects extensible components here -->
+
+  <footer> <!-- footer -->
+    <div class="row">
+      <div class="col-12">
+        <small> Contact Me At: yezixbei@gmail.com </small>
+      </div>
+    </div>
+  </footer>
+</div>
