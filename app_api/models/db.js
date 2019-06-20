@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 let dbURI = 'mongodb://localhost/BobaBae';
 if (process.env.NODE_ENV === 'production') {
-  dbURI = process.env.MONGODB_URI;
+  dbURI = process.env.MONGOLAB_URI;
 }
 mongoose.connect(dbURI, { useNewUrlParser: true });
 
