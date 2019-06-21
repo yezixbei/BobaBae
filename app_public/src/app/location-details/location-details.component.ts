@@ -20,7 +20,7 @@ export class LocationDetailsComponent implements OnInit {
   };
   public formError: string; 
   
-  public onReviewSubmit(): void {
+  public onSubmit(): void {
     this.formError = '';
     if (this.newReview.author && this.newReview.rating && this.newReview.reviewText) {
 

@@ -14,7 +14,8 @@ export class HomeListComponent implements OnInit {
   constructor(private bobabaeDataService: BobabaeDataService,
               private geolocationService: GeolocationService) { }
 
-  locations: Location[];
+  locationsOne: Location[];
+  locationsTwo: Location[];
   public message: string;
 
   private getPosition(): void {
@@ -36,7 +37,8 @@ export class HomeListComponent implements OnInit {
     this.bobabaeDataService.getLocations(lat, lng)
       .then(foundLocations => {
         this.message = foundLocations.length > 0 ? '' : 'No locations found';
-        this.locations = foundLocations;
+        this.locationsOne = foundLocations.slice(0, foundLocations.length/2);
+        this.locationsTwo = foundLocations.slice(foundLocations.length / 2);
       });
   }
 

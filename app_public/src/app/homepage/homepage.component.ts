@@ -16,8 +16,7 @@ export class HomepageComponent implements OnInit {
     header: {
       title: 'Boba Bae',
       strapline: 'Find boba cafes near you!'
-    },
-    sidebar: 'Toppings, such as chewy tapioca balls, popping boba, fruit jelly, grass jelly, agar jelly, and puddings are often added. '
+    }
   };
 
 }
