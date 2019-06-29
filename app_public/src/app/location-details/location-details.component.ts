@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Location, Review } from '../location';
 import { BobabaeDataService } from '../bobabae-data.service';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-location-details',
@@ -10,22 +11,25 @@ import { BobabaeDataService } from '../bobabae-data.service';
 export class LocationDetailsComponent implements OnInit {
 
   @Input() location: Location;
+  constructor(
+    private bobabaeDataService: BobabaeDataService,
+    private authenticationService: AuthenticationService) { }
 
-  public googleAPIKey: string = 'AIzaSyDwOdTsRh8T1KsU6cBOw_tSmSXZhoLfO0I';
   public formVisible: boolean = false; // put *ngIf="formVisible" in the div around the form; put (click)="formVisible=false" inside buttons
+  public formError: string; 
   public newReview: Review = { // get data from [(ngModel)]="data"
     author: '',
     rating: 5,
     reviewText: ''
   };
-  public formError: string; 
   
   public onSubmit(): void {
     this.formError = '';
+    this.newReview.author = this.getUsername();
     if (this.newReview.author && this.newReview.rating && this.newReview.reviewText) {
-
       this.bobabaeDataService.addReviewByLocationId(this.location._id, this.newReview)
       .then((review:Review) => {
+        console.log('Review saved', review);
         let reviews = this.location.reviews.slice(0); // update the reviews in the page
         reviews.unshift(review);
         this.location.reviews = reviews;
@@ -42,7 +46,14 @@ export class LocationDetailsComponent implements OnInit {
     this.newReview.reviewText = '';
   }
 
-  constructor(private bobabaeDataService:BobabaeDataService) { }
+  public isLoggedIn(): boolean {
+    return this.authenticationService.isLoggedIn();
+  }
+
+  public getUsername(): string {
+    const { name } = this.authenticationService.getCurrentUser();
+    return name ? name : 'Guest';
+  }
 
   ngOnInit() {
   }

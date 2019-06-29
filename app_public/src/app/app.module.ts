@@ -17,6 +17,9 @@ import { RatingStarsComponent } from './rating-stars/rating-stars.component';
 import { DistancePipe } from './distance.pipe';
 import { HtmlLineBreaksPipe } from './html-line-breaks.pipe';
 import { MostRecentFirstPipe } from './most-recent-first.pipe';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { SidebarDetailsComponent } from './sidebar-details/sidebar-details.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { MostRecentFirstPipe } from './most-recent-first.pipe';
     LocationDetailsComponent,
     DetailsPageComponent,
     RatingStarsComponent,
-    MostRecentFirstPipe
+    MostRecentFirstPipe,
+    RegisterComponent,
+    LoginComponent,
+    SidebarDetailsComponent
   ],
   imports: [
     BrowserModule,

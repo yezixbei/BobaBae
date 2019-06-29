@@ -51,6 +51,7 @@ const locationSchema = new mongoose.Schema({
     type: {type: String},
     coordinates: [Number]
   },
+  imageURL: String,
   openingTimes: [openingTimesSchema],
   reviews: [reviewSchema]
 });

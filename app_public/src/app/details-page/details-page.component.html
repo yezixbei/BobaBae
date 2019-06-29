@@ -3,5 +3,5 @@
   <div class="col-12 col-md-8">
     <app-location-details *ngIf="newLocation" [location]="newLocation" ></app-location-details> <!-- ngIf*=true, then the element is shown-->
   </div>
-  <app-sidebar class="col-12 col-md-4" [content]="pageContent.sidebar"></app-sidebar>
+  <app-sidebar-details class="col-12 col-md-4" *ngIf="newLocation" [location]="newLocation"></app-sidebar-details>
 </div>

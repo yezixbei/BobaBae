@@ -21,4 +21,5 @@ export class Location {
     coords: number[];
     openingTimes: OpeningTimes;
     reviews: Review[];
+    imageURL: string;
 }

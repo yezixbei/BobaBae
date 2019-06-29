@@ -21,8 +21,7 @@ export class DetailsPageComponent implements OnInit {
     header: {
       title: '',
       strapline: ''
-    },
-      sidebar: ''};
+    }};
 
   ngOnInit(): void { // get locationId from URL
     this.route.paramMap
@@ -34,7 +33,6 @@ export class DetailsPageComponent implements OnInit {
       .subscribe((newLocation: Location) => {
         this.newLocation = newLocation;
         this.pageContent.header.title = newLocation.name; 
-        this.pageContent.sidebar = newLocation.name + ' sidebar txt';
       });
   }
 

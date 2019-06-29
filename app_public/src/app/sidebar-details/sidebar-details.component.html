@@ -1,0 +1,37 @@
+<div class="row">
+
+  <div class="col-12">
+    <app-rating-stars [rating]="location.rating"></app-rating-stars>
+    <p>{{ location.address }}</p>
+
+    <div class="card card-primary">
+      <div class="card-block">
+        <h2 class="card-title">Opening hours</h2>
+        <p class="card-text" *ngFor="let time of location.openingTimes" [ngSwitch]="time.closed">
+          {{ time.days }}:
+          <span *ngSwitchCase="true"> Closed</span>
+          <span *ngSwitchDefault>{{ time.opening + " - " + time.closing}}</span>
+      </div>
+    </div>
+
+    <div class="card card-primary">
+      <div class="card-block">
+        <h2 class="card-title">Boba Quality</h2>
+        <span *ngFor="let bobaQuality of location.bobaQualities" class="badge badge-warning">
+          <i class="fa fa-check"></i>
+          {{bobaQuality}}
+        </span>
+      </div>
+    </div>
+
+    <div class="card card-primary">
+      <div class="card-block">
+        <h2 class="card-title">Location map</h2>
+        <img
+          src="https://maps.googleapis.com/maps/api/staticmap?center={{location.coords[1]}},{{location.coords[0]}}&zoom=17&size=400x350&sensor=false&markers={{location.coords[1]}},{{location.coords[0]}}&key={{googleAPIKey}}&scale=2"
+          class="img-fluid rounded" />
+      </div>
+    </div>
+
+  </div>
+</div>

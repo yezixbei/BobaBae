@@ -14,6 +14,9 @@ export class HomeListComponent implements OnInit {
   constructor(private bobabaeDataService: BobabaeDataService,
               private geolocationService: GeolocationService) { }
 
+  lat:number;
+  lng:number;
+  public googleAPIKey: string = 'AIzaSyDwOdTsRh8T1KsU6cBOw_tSmSXZhoLfO0I';
   locationsOne: Location[];
   locationsTwo: Location[];
   public message: string;
@@ -32,9 +35,9 @@ export class HomeListComponent implements OnInit {
   } ;
   private getLocations(position: any): void {
     this.message = 'Searching for nearby places...';
-    const lat: number = position.coords.latitude; 
-    const lng: number = position.coords.longitude;
-    this.bobabaeDataService.getLocations(lat, lng)
+    this.lat = position.coords.latitude; 
+    this.lng = position.coords.longitude;
+    this.bobabaeDataService.getLocations(this.lat, this.lng)
       .then(foundLocations => {
         this.message = foundLocations.length > 0 ? '' : 'No locations found';
         this.locationsOne = foundLocations.slice(0, foundLocations.length/2);

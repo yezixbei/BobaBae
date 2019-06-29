@@ -1,7 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const jwt = require('express-jwt');
+const auth = jwt({ // triggers 401 error at the bottom of app.js
+  secret: process.env.JWT_SECRET,
+  userProperty: 'payload'
+});
 const ctrlLocations = require('../controllers/locations');
 const ctrlReviews = require('../controllers/reviews');
+const ctrlAuth = require('../controllers/authentication');
 
 // locations
 router
@@ -18,12 +24,16 @@ router
 // reviews
 router
   .route('/locations/:locationid/reviews')
-  .post(ctrlReviews.reviewsCreate);
+  .post(auth, ctrlReviews.reviewsCreate);
 
 router
   .route('/locations/:locationid/reviews/:reviewid')
   .get(ctrlReviews.reviewsReadOne)
-  .put(ctrlReviews.reviewsUpdateOne)
+  .put(auth, ctrlReviews.reviewsUpdateOne)
   .delete(ctrlReviews.reviewsDeleteOne);
+
+  // authentication
+router.post('/register', ctrlAuth.register);
+router.post('/login', ctrlAuth.login);
 
 module.exports = router;

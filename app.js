@@ -1,17 +1,20 @@
+require('dotenv').config();
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-// bring in models and controllers
-require('./app_api/models/db');
-const apiRouter = require('./app_api/routes/index');
+// bring in models, controllers, passport
+const passport = require('passport'); // passport must be required before model and config after
+require('./app_api/models/db');  
+require('./app_api/config/passport');
 
+const apiRouter = require('./app_api/routes/index');
 const app = express();
 
 // bring in views
-app.set('views', path.join(__dirname, 'app_server', 'views'));
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 
@@ -25,11 +28,12 @@ app.use(cookieParser());
 // let the browser access these directory as is
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'app_public', 'build')));
+app.use(passport.initialize()); // initialize after static routes
 
 // resolve CORS issues; add two headers to all api responses so they can come from different ports
 app.use('/api', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:4200'); 
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization'); // add Authorization for passport
   next();
 });
 
@@ -41,19 +45,23 @@ app.get('*', function (req, res, next) {
 });
 
 
+// failing jwt auth at API end points
+app.use((err, req, res, next) => {
+  if (err.name === 'UnauthorizedError') res.status(401).json({ "message": err.name + ": " + err.message });
+});
 
-// error handling
-app.use(function(req, res, next) {
+// 404 and forward to error handler
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
-app.use(function(err, req, res) {
+// error handler
+app.use(function (err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   res.status(err.status || 500);
   res.render('error');
 });
-
 
 module.exports = app;

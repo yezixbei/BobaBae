@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 let dbURI = 'mongodb://localhost/BobaBae';
 if (process.env.NODE_ENV === 'production') {
-  dbURI = process.env.MONGOLAB_URI;
+  dbURI = process.env.MONGODB_URI;
 }
 mongoose.connect(dbURI, { useNewUrlParser: true });
 
@@ -42,3 +42,4 @@ process.on('SIGTERM', () => {
 });
 
 require('./locations');
+require('./users');
