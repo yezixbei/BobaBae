@@ -13,10 +13,7 @@ export class ShoppingCartComponent implements OnInit {
   public total$: Observable<number>;
 
   @Input() buttonExists: boolean; 
-  constructor(private cartService:CartService) {
-    this.items$ = this.cartService.items$;
-    this.total$ = this.cartService.total$;
-   }
+  constructor(private cartService:CartService) { }
 
   public removeFromCart(item: MenuItem): void {
     this.cartService.removeFromCart(item);
@@ -26,7 +23,9 @@ export class ShoppingCartComponent implements OnInit {
     this.cartService.clearCart();
   }
   
-  ngOnInit() {
+  public ngOnInit() {
+    this.items$ = this.cartService.items$;
+    this.total$ = this.cartService.total$;
   }
 
 }
