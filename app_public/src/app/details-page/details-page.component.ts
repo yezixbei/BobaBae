@@ -10,18 +10,19 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./details-page.component.css']
 })
 export class DetailsPageComponent implements OnInit {
+  public newLocation: Location;
+
+  public pageContent = {
+    header: {
+      title: '',
+      strapline: ''
+    }
+  };
 
   constructor(
     private bobabaeDataService: BobabaeDataService,
     private route: ActivatedRoute) { }
 
-  newLocation: Location;
-  
-  public pageContent = {
-    header: {
-      title: '',
-      strapline: ''
-    }};
 
   ngOnInit(): void { // get locationId from URL
     this.route.paramMap

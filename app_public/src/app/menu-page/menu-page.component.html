@@ -1,0 +1,17 @@
+<app-page-header [content]="pageContent.header"></app-page-header>
+<div class="row">
+  <div class="col-12 col-md-8">
+    <div class="card" *ngFor="let menuItem of location.menu">
+      <div class="card-block" >
+        <h4>
+          {{menuItem.name}}
+          <span class="badge badge-pill badge-default float-right">{{'$'+menuItem.price}}</span>
+        </h4>
+        <p class="description">{{menuItem.description}}</p>
+        <a (click)="addToCart(menuItem)">Add to cart</a>
+      </div>
+    </div>
+  </div>
+  <app-shopping-cart [buttonExists]="pageContent.buttonExists" class="col-12 col-md-4"></app-shopping-cart>
+</div>
+

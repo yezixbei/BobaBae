@@ -13,13 +13,8 @@ export class AuthenticationService {
     private bobabaeDataService: BobabaeDataService
   ) { }
 
-  public getToken(): string {
-    return this.storage.getItem('boba-token'); // local browser storage
-  }
-
-  public saveToken(token: string): void {
-    this.storage.setItem('boba-token', token);
-  }
+  public getToken(): string { return this.storage.getItem('boba-token'); } // local browser storage
+  public saveToken(token: string): void { this.storage.setItem('boba-token', token); }
 
   public login(credentials: any): Promise<any> {
     return this.bobabaeDataService.login(credentials)
@@ -31,9 +26,7 @@ export class AuthenticationService {
       .then((authResp: AuthResponse) => this.saveToken(authResp.token));
   }
 
-  public logout(): void {
-    this.storage.removeItem('boba-token');
-  }
+  public logout(): void { this.storage.removeItem('boba-token'); }
 
   public isLoggedIn(): boolean {
     const token: string = this.getToken();

@@ -12,14 +12,16 @@ import { DetailsPageComponent } from './details-page/details-page.component';
 import { LocationDetailsComponent } from './location-details/location-details.component';
 import { AboutComponent } from './about/about.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { RatingStarsComponent } from './rating-stars/rating-stars.component';
 import { DistancePipe } from './distance.pipe';
-import { HtmlLineBreaksPipe } from './html-line-breaks.pipe';
 import { MostRecentFirstPipe } from './most-recent-first.pipe';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { SidebarDetailsComponent } from './sidebar-details/sidebar-details.component';
+import { MenuPageComponent } from './menu-page/menu-page.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
@@ -29,15 +31,17 @@ import { SidebarDetailsComponent } from './sidebar-details/sidebar-details.compo
     AboutComponent,
     HomepageComponent,
     PageHeaderComponent,
-    HtmlLineBreaksPipe,
-    SidebarComponent,
     LocationDetailsComponent,
     DetailsPageComponent,
     RatingStarsComponent,
     MostRecentFirstPipe,
     RegisterComponent,
     LoginComponent,
-    SidebarDetailsComponent
+    SidebarDetailsComponent,
+    MenuPageComponent,
+    ShoppingCartComponent,
+    CheckoutPageComponent,
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,

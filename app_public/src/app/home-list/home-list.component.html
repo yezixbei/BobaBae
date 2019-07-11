@@ -1,22 +1,17 @@
-<div class="row">
+<div class="row" >
   <div class="col-12">
     <img
-      src="https://maps.googleapis.com/maps/api/staticmap?center={{lat}},{{lng}}&zoom=17&size=800x300&sensor=false&markers={{lat}},{{lng}}&key={{googleAPIKey}}&scale=2" 
+      src="https://www.loveandoliveoil.com/wp-content/uploads/2016/06/horchata-bobaFEAT-1200x550.jpg" 
       class="img-fluid rounded" />
-  </div>
-</div>
-
-&nbsp;
-&nbsp;
-&nbsp;
-
-<div class="row">
-  <div class="col-12">
     <div class="error">{{ message }}</div>
   </div>
 </div>
 
-<div class="row">
+&nbsp;
+&nbsp;
+&nbsp;
+
+<div class="row" *ngIf="locationsOne">
   <div class="col-12 col-md-6">
     <div class="card" *ngFor="let location of locationsOne">
       <div class="card-block">

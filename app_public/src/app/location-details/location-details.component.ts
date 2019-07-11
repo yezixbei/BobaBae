@@ -9,12 +9,6 @@ import { AuthenticationService } from '../authentication.service';
   styleUrls: ['./location-details.component.css']
 })
 export class LocationDetailsComponent implements OnInit {
-
-  @Input() location: Location;
-  constructor(
-    private bobabaeDataService: BobabaeDataService,
-    private authenticationService: AuthenticationService) { }
-
   public formVisible: boolean = false; // put *ngIf="formVisible" in the div around the form; put (click)="formVisible=false" inside buttons
   public formError: string; 
   public newReview: Review = { // get data from [(ngModel)]="data"
@@ -22,15 +16,20 @@ export class LocationDetailsComponent implements OnInit {
     rating: 5,
     reviewText: ''
   };
+
+  @Input() location: Location;
+  constructor(
+    private bobabaeDataService: BobabaeDataService,
+    private authenticationService: AuthenticationService) { }
   
+
   public onSubmit(): void {
     this.formError = '';
     this.newReview.author = this.getUsername();
     if (this.newReview.author && this.newReview.rating && this.newReview.reviewText) {
       this.bobabaeDataService.addReviewByLocationId(this.location._id, this.newReview)
       .then((review:Review) => {
-        console.log('Review saved', review);
-        let reviews = this.location.reviews.slice(0); // update the reviews in the page
+        let reviews = this.location.reviews.slice(0); 
         reviews.unshift(review);
         this.location.reviews = reviews;
         this.resetAndHideReviewForm();

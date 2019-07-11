@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../authentication.service';
-import { HistoryService } from '../history.service';
 
 @Component({
   selector: 'app-register',
@@ -13,8 +12,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authenticationService: AuthenticationService,
-    private historyService: HistoryService) { }
+    private authenticationService: AuthenticationService) { }
 
   public formError: string = '';
   public credentials = {
@@ -36,7 +34,7 @@ export class RegisterComponent implements OnInit {
       this.formError = 'All fields are required, please try again';
     } else {
       this.authenticationService.register(this.credentials)
-        .then(() => this.router.navigateByUrl('/'))
+        .then(() => this.router.navigateByUrl('/login'))
         .catch((message) => this.formError = message);
     }
   }

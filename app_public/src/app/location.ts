@@ -11,15 +11,24 @@ export class Review {
     reviewText: string;
 }
 
+export class MenuItem {
+    name: string;
+    price: number;
+    imageURL: string;
+    description: string;
+    flavors: string[];
+}
+
 export class Location {
     _id: string;
     name: string;
     address: string;
-    rating: number;
-    bobaQualities: string[];
-    distance: number;
     coords: number[];
-    openingTimes: OpeningTimes;
-    reviews: Review[];
+    distance: number;
+    openingTimes: OpeningTimes[];
     imageURL: string;
+    menu: MenuItem[];
+    rating: number;
+    reviews: Review[];
+    bobaQualities: string[];
 }

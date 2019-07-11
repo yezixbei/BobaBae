@@ -9,7 +9,7 @@ import { Location } from '../location';
 export class SidebarDetailsComponent implements OnInit {
 
   @Input() location: Location;
-  public googleAPIKey: string = 'AIzaSyDwOdTsRh8T1KsU6cBOw_tSmSXZhoLfO0I';
+  public googleAPIKey: string = 'AIzaSyCG_hw39mu9q1Ue2TjtbSz--2hDMqao5Ag';
 
   constructor() { }
 

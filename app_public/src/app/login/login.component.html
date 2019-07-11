@@ -6,16 +6,14 @@
       <div role="alert" *ngIf="formError" class="alert alert-danger"> {{ formError }}</div>
       <div class="form-group">
         <label for="email">Email Address</label>
-        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email address"
-          [(ngModel)]="credentials.email">
+        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="credentials.email">
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" name="password" placeholder="e.g 12+ alphanumerics"
-          [(ngModel)]="credentials.password">
+        <input type="password" class="form-control" [(ngModel)]="credentials.password" id="password" name="password" placeholder="e.g 12+ alphanumerics">
       </div>
       <button type="submit" role="button" class="btn btn-primary">Sign in!</button>
     </form>
   </div>
-  <app-sidebar [content]="pageContent.sidebar" class="col-12 col-md-4"></app-sidebar>
+  <div class="col-12 col-md-4"></div>
 </div>

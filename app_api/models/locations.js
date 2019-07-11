@@ -34,26 +34,45 @@ const reviewSchema = new mongoose.Schema({
   }
 });
 
+const menuItemSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  price: {
+    type: Number,
+    required: true
+  },
+  imageURL: String,
+  description: {
+    type: String,
+  },
+  flavors: {
+    type: [String]
+  }
+});
+
 const locationSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
   },
   address: String,
+  coords: {
+    type: {type: String},
+    coordinates: [Number]
+  },
+  openingTimes: [openingTimesSchema],
+  imageURL: String,
+  menu: [menuItemSchema],
   rating: {
     type: Number,
     'default': 0,
     min: 0,
     max: 5
   },
-  bobaQualities: [String],
-  coords: {
-    type: {type: String},
-    coordinates: [Number]
-  },
-  imageURL: String,
-  openingTimes: [openingTimesSchema],
-  reviews: [reviewSchema]
+  reviews: [reviewSchema],
+  bobaQualities: [String]
 });
 locationSchema.index({coords: '2dsphere'});
 

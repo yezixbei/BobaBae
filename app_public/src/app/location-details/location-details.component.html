@@ -57,7 +57,7 @@
           <small class="reviewTimestamp float-right">{{ review.createdOn | date : 'd MMMM yyyy'}}</small>
         </div>
         <div class="col-12">
-          <p [innerHTML]="review.reviewText | htmlLineBreaks"></p>
+          <p>{{review.reviewText}}</p>
         </div>
       </div>      
     </div>

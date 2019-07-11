@@ -16,10 +16,10 @@ export class HomeListComponent implements OnInit {
 
   lat:number;
   lng:number;
-  public googleAPIKey: string = 'AIzaSyDwOdTsRh8T1KsU6cBOw_tSmSXZhoLfO0I';
   locationsOne: Location[];
   locationsTwo: Location[];
   public message: string;
+  public googleAPIKey: string = 'AIzaSyCG_hw39mu9q1Ue2TjtbSz--2hDMqao5Ag';
 
   private getPosition(): void {
     this.message = 'Getting your location...';
