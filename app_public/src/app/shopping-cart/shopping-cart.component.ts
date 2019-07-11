@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CartService } from '../cart.service';
 import { MenuItem } from '../location';
-import { of } from 'rxjs';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -10,8 +9,8 @@ import { of } from 'rxjs';
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent implements OnInit {
-  public items$: Observable<MenuItem[]> = of([]);
-  public total$: Observable<number> = of(0);
+  public items$: Observable<MenuItem[]>;
+  public total$: Observable<number>;
 
   @Input() buttonExists: boolean; 
   constructor(private cartService:CartService) {

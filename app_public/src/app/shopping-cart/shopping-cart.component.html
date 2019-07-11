@@ -1,29 +1,29 @@
 <div class="row">
   <div class="col-12">
 
-  <div class="card-header text-center">
-    <h3>Your Order</h3>
-  </div>
+    <div class="card-header text-center">
+      <h3>Your Order</h3>
+    </div>
 
-  <div *ngIf="items$">
-    <div class="card" *ngFor="let item of items$|async">
-      <div class="card-block">
-        <h5>
-          {{item.name}}
-          <span class="badge badge-pill badge-default float-right">{{'$'+item.price}}</span>
-        </h5>
-        <a (click)="removeFromCart(item)">Remove</a>
+    <div *ngIf="(items$|async).length">
+      <div class="card" *ngFor="let item of items$|async">
+        <div class="card-block">
+          <h5>
+            {{item.name}}
+            <span class="badge badge-pill badge-default float-right">{{'$'+item.price}}</span>
+          </h5>
+          <a (click)="removeFromCart(item)">Remove</a>
+        </div>
+      </div>
+      <div class="card text-right"> 
+        <h5> Total: ${{total$| async}}</h5>
+        <a (click)="clearCart()">Clear Cart</a>
+      </div>
+      &nbsp;
+      <div *ngIf="buttonExists"> 
+        <a class="btn btn-primary btn-large btn-block" routerLink="/checkout">Check out</a>
       </div>
     </div>
-    <div class="card text-right"> 
-      <h5> Total: ${{total$| async}}</h5>
-      <a (click)="clearCart()">Clear Cart</a>
-    </div>
-    &nbsp;
-    <div *ngIf="buttonExists"> 
-      <a class="btn btn-primary btn-large btn-block" routerLink="/checkout">Check out</a>
-    </div>
-  </div>
   
   </div>
 </div>
