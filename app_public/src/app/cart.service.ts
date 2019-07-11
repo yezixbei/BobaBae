@@ -10,7 +10,9 @@ export class CartService {
   private total = new BehaviorSubject<number>(0);
 
   constructor() { 
-    this.items.next(JSON.parse(localStorage.getItem('cart'))); // assign item from localStorage
+    const cartString = localStorage.getItem('cart');
+    if (cartString == null) this.items.next([]);
+    else this.items.next(JSON.parse(cartString)); 
     this.total.next(this.computeTotal());
   }
 
