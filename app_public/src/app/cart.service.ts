@@ -1,26 +1,43 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { MenuItem } from './location';
+import { MenuItem, Location } from './location';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
   private items = new BehaviorSubject<MenuItem[]>([]);
-  private total = new BehaviorSubject<number>(0);
+  private vendor = new BehaviorSubject<Location>(new Location());
+  private cartSize = new BehaviorSubject<number>(0);
+  private cartVal = new BehaviorSubject<number>(0);
 
   constructor() { 
-    const cartString = localStorage.getItem('cart');
-    if (cartString == null) this.items.next([]);
-    else this.items.next(JSON.parse(cartString)); 
-    this.total.next(this.computeTotal());
+    const itemsString = localStorage.getItem('items');
+    const vendorString = localStorage.getItem('vendor');
+
+    if (itemsString == null || vendorString == null) {
+      this.items.next([]);
+      this.vendor.next(new Location());
+    } else {
+      this.items.next(JSON.parse(itemsString)); 
+      this.vendor.next(JSON.parse(vendorString));
+    } 
+
+    this.cartSize.next(this.computeCartSize());
+    this.cartVal.next(this.computeCartVal());
   }
 
-
   public get items$() { return this.items.asObservable(); }
-  public get total$(): Observable<number> { return this.total.asObservable();}
+  public get vendor$() { return this.vendor.asObservable(); }
+  public get cartSize$(): Observable<number> { return this.cartSize.asObservable(); }
+  public get cartVal$(): Observable<number> { return this.cartVal.asObservable();}
 
-  private computeTotal(): number {
+
+  private computeCartSize(): number {
+    return this.items.getValue().length;
+  }
+
+  private computeCartVal(): number {
     let total = 0;
     let currentItems = this.items.getValue(); // get the most recent version
     for (let i = 0; i < currentItems.length; i++) { total += currentItems[i].price; }
@@ -29,8 +46,10 @@ export class CartService {
   
   private saveCart(currentItems:MenuItem[]):void{ 
     this.items.next(currentItems);
-    this.total.next(this.computeTotal());
-    localStorage.setItem('cart', JSON.stringify(currentItems));
+    this.cartSize.next(this.computeCartSize());
+    this.cartVal.next(this.computeCartVal());
+
+    localStorage.setItem('items', JSON.stringify(currentItems));
   }
 
   public addToCart(item: MenuItem):void {
@@ -46,7 +65,16 @@ export class CartService {
     this.saveCart(currentItems);
   }
 
-  public clearCart():void{ this.saveCart([]);}
+  public clearCart():void{ 
+    this.saveCart([]);
+  }
+
+  public checkVendor(vendor: Location): void {
+    if (this.vendor.getValue().name === vendor.name) return;
+    this.vendor.next(vendor);
+    localStorage.setItem('vendor', JSON.stringify(vendor));
+    this.clearCart();
+  }
 }
 
 

@@ -1,6 +1,5 @@
 import {Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-checkout-page',
@@ -8,7 +7,6 @@ import { environment } from '../../environments/environment';
   styleUrls: ['./checkout-page.component.css'],
 })
 export class CheckoutPageComponent{
-  private apiBaseUrl = environment.apiBaseUrl;
   public formError: string; 
   public newCredentials = {
     firstName: '',
@@ -28,10 +26,15 @@ export class CheckoutPageComponent{
       title: 'Check out',
       strapline: ''
     },
-    buttonExists: false
+    cartInfo:{
+      buttonExists: false,
+    }
+    
   };
 
-  constructor(private router: Router){ }
+  constructor(
+    private router: Router,
+  ){ }
 
   public onSubmit(): void {
     this.formError = '';
@@ -41,5 +44,4 @@ export class CheckoutPageComponent{
       this.router.navigateByUrl('/confirmation');
     }
   }
-
 }

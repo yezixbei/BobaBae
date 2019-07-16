@@ -2,7 +2,7 @@
 <div class="row">
 
   <div class="col-12 col-md-8">
-    <p class="lead">Already a member? Please <a routerLink="/login"> log in</a> instead</p>
+    <p class="lead">Already a member? Please <a routerLink="/login" class="text-light"> log in</a> instead</p>
     <form (submit)="onRegisterSubmit()">
       <div role="alert" *ngIf="formError" class="alert alert-danger"> {{ formError }}</div>
 

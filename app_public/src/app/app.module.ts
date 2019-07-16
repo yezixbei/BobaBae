@@ -22,6 +22,7 @@ import { MenuPageComponent } from './menu-page/menu-page.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { PageHeaderLinkedComponent } from './page-header-linked/page-header-linked.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
     MenuPageComponent,
     ShoppingCartComponent,
     CheckoutPageComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    PageHeaderLinkedComponent
   ],
   imports: [
     BrowserModule,

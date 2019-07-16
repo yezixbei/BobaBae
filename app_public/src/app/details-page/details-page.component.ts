@@ -36,5 +36,4 @@ export class DetailsPageComponent implements OnInit {
         this.pageContent.header.title = newLocation.name; 
       });
   }
-
 }

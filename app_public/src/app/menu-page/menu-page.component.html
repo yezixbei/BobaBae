@@ -1,17 +1,48 @@
-<app-page-header [content]="pageContent.header"></app-page-header>
+<app-page-header-linked [content]="pageContent.header"></app-page-header-linked>
 <div class="row">
-  <div class="col-12 col-md-8" *ngIf="location">
-    <div class="card" *ngFor="let menuItem of location.menu">
-      <div class="card-block" >
-        <h4>
-          {{menuItem.name}}
-          <span class="badge badge-pill badge-default float-right">{{'$'+menuItem.price}}</span>
-        </h4>
-        <p class="description">{{menuItem.description}}</p>
-        <a (click)="addToCart(menuItem)">Add to cart</a>
-      </div>
-    </div>
-  </div>
-  <app-shopping-cart [buttonExists]="pageContent.buttonExists" class="col-12 col-md-4"></app-shopping-cart>
-</div>
+  <div class="col-12 col-md-8" *ngIf="menuFirstCol">
 
+    <div class="row" class="card-deck">
+
+      <div class="col-12 col-lg-6">
+        <div *ngFor="let menuItem of menuFirstCol">
+          <div class="card">
+            <img class="card-img img-fluid rounded" src="{{menuItem.imageURL}}" alt="Card image cap">
+            <div class="card-img-overlay d-flex flex-column">
+              <h3 class="text-left text-dark">
+                {{menuItem.name}}
+                <span class="badge badge-pill badge-default float-right">{{'$'+menuItem.price}}</span>
+              </h3>
+              <p class="description text-dark">{{menuItem.description}}</p>
+              <a class="btn btn-light align-self-end" style="margin-top: auto;" (click)="addToCart(menuItem)">Add to cart</a>  
+            </div>
+          </div>
+          &nbsp;
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-6">
+        <div *ngFor="let menuItem of menuSecCol">
+          <div class="card">
+            <img class="card-img img-fluid"
+              src="{{menuItem.imageURL}}"
+              alt="Card image cap">
+            <div class="card-img-overlay d-flex flex-column">
+              <h3 class="text-left text-dark">
+                {{menuItem.name}}
+                <span class="badge badge-pill badge-default float-right">{{'$'+menuItem.price}}</span>
+              </h3>
+              <p class="description text-dark">{{menuItem.description}}</p>
+              <a class="btn btn-light align-self-end" style="margin-top: auto;" (click)="addToCart(menuItem)">Add to cart</a>
+            </div>
+          </div>
+          &nbsp;
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <app-shopping-cart [content]="pageContent.cartInfo" class="col-12 col-md-4"></app-shopping-cart>
+  
+</div>

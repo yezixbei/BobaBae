@@ -11,15 +11,20 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./menu-page.component.css']
 })
 export class MenuPageComponent implements OnInit {
-  public location: Location;
+  public menuFirstCol: MenuItem[];
+  public menuSecCol: MenuItem[];
   public visible: boolean;
   
   public pageContent = {
     header: {
       title: '',
-      strapline: 'Menu'
+      strapline: 'Menu',
+      locationId:''
     },
-    buttonExists: true
+    cartInfo:{
+      location: new Location(),
+      buttonExists: true
+    }   
   };
 
   constructor(
@@ -29,6 +34,7 @@ export class MenuPageComponent implements OnInit {
 
   
   public addToCart(item:MenuItem): void {
+    this.cartService.checkVendor(this.pageContent.cartInfo.location);
     this.cartService.addToCart(item);
   }
 
@@ -40,8 +46,11 @@ export class MenuPageComponent implements OnInit {
       })
       )
       .subscribe((newLocation: Location) => {
-        this.location = newLocation;
         this.pageContent.header.title = newLocation.name;
+        this.pageContent.header.locationId = newLocation._id;
+        this.pageContent.cartInfo.location = newLocation;
+        this.menuFirstCol = newLocation.menu.slice(0, newLocation.menu.length/2);
+        this.menuSecCol = newLocation.menu.slice(newLocation.menu.length/2);
       });
   }
 

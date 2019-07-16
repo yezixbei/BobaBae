@@ -10,9 +10,9 @@ import { MenuItem } from '../location';
 })
 export class ShoppingCartComponent implements OnInit {
   public items$: Observable<MenuItem[]>;
-  public total$: Observable<number>;
+  public cartVal$: Observable<number>;
 
-  @Input() buttonExists: boolean; 
+  @Input() content: any; 
   constructor(private cartService:CartService) { }
 
   public removeFromCart(item: MenuItem): void {
@@ -25,7 +25,7 @@ export class ShoppingCartComponent implements OnInit {
   
   public ngOnInit() {
     this.items$ = this.cartService.items$;
-    this.total$ = this.cartService.total$;
+    this.cartVal$ = this.cartService.cartVal$;
   }
 
 }

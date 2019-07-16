@@ -5,7 +5,7 @@
       <h3>Your Order</h3>
     </div>
 
-    <div *ngIf="(items$|async).length">
+    <div *ngIf="(items$|async).length>0">
       <div class="card" *ngFor="let item of items$|async">
         <div class="card-block">
           <h5>
@@ -15,14 +15,15 @@
           <a (click)="removeFromCart(item)">Remove</a>
         </div>
       </div>
+
       <div class="card text-right"> 
-        <h5> Total: ${{total$| async}}</h5>
+        <h5> Total: ${{cartVal$| async}}</h5>
         <a (click)="clearCart()">Clear Cart</a>
       </div>
-      &nbsp;
-      <div *ngIf="buttonExists"> 
-        <a class="btn btn-primary btn-large btn-block" routerLink="/checkout">Check out</a>
-      </div>
+    </div>
+    &nbsp;
+    <div *ngIf="content.buttonExists">
+      <a class="btn btn-primary btn-large btn-block" routerLink="/checkout">Check out</a>
     </div>
   
   </div>

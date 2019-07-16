@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AuthenticationService } from '../authentication.service';
+import { CartService } from '../cart.service';
 import { User } from '../user';
+
 
 @Component({
   selector: 'app-framework',
@@ -8,8 +11,12 @@ import { User } from '../user';
   styleUrls: ['./framework.component.css']
 })
 export class FrameworkComponent implements OnInit {
+  public cartSize$: Observable<number>;
 
-  constructor(private authenticationService:AuthenticationService) { }
+  constructor(
+    private authenticationService:AuthenticationService,
+    private cartService:CartService
+  ) { }
 
   public doLogOut(): void { this.authenticationService.logout() }
 
@@ -21,6 +28,7 @@ export class FrameworkComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.cartSize$ = this.cartService.cartSize$;
   }
 
 }

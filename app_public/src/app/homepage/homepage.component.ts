@@ -15,7 +15,7 @@ export class HomepageComponent implements OnInit {
   public pageContent = {
     header: {
       title: 'Boba Bae',
-      strapline: 'Find boba cafes near you!'
+      strapline: 'Get boba delivered to your doorsteps!'
     }
   };
 
