@@ -30,8 +30,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'app_public', 'build')));
 app.use(passport.initialize()); // initialize after static routes
 
-// resolve CORS issues; add two headers to all api responses so they can come from different ports
+// resolve CORS issues; add headers to all api responses so they can come from different ports
 app.use('/api', (req, res, next) => {
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
   res.header('Access-Control-Allow-Origin', 'http://localhost:4200'); 
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization'); // add Authorization for passport
   next();
@@ -50,12 +51,12 @@ app.use((err, req, res, next) => {
   if (err.name === 'UnauthorizedError') res.status(401).json({ "message": err.name + ": " + err.message });
 });
 
-// 404 and forward to error handler
+
 app.use(function (req, res, next) {
   next(createError(404));
 });
 
-// error handler
+
 app.use(function (err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

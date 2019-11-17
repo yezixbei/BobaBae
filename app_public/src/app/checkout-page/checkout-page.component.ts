@@ -1,4 +1,4 @@
-import {Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -34,6 +34,7 @@ export class CheckoutPageComponent{
 
   constructor(
     private router: Router,
+    private _zone: NgZone
   ){ }
 
   public onSubmit(): void {
@@ -41,7 +42,39 @@ export class CheckoutPageComponent{
     if (!this.newCredentials.nameOnCard || !this.newCredentials.creditCardNum || !this.newCredentials.expirationDate || !this.newCredentials.cvv) {
       this.formError = 'All fields are required, please try again';
     } else {
+      this.getToken();
       this.router.navigateByUrl('/confirmation');
     }
   }
+
+  getToken() {
+    this.formError = 'Loading...';
+    (<any>window).Stripe.card.createToken({
+      number: this.newCredentials.creditCardNum,
+      exp_month: this.newCredentials.expirationDate,
+      exp_year: this.newCredentials.expirationDate,
+      cvc: this.newCredentials.cvv
+    }, (status: number, response: any) => {
+
+      // Wrapping inside the Angular zone
+      this._zone.run(() => {
+        if (status === 200) {
+          this.formError = `Success! Card token ${response.card.id}.`;
+
+        } else {
+          this.formError = response.error.message;
+        }
+      });
+    });
+  }
 }
+
+/*          (async () => {
+            const charge = await (<any>window).Stripe.charges.create({
+              amount: 999,
+              currency: 'usd',
+              description: 'Example charge',
+              source: response.card.id,
+            });
+          })();
+*/
